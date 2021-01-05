@@ -4,7 +4,9 @@
 
 #include "Date.h"
 Date::Date(unsigned d, unsigned m, unsigned y){
-
+day = d;
+month = m;
+year = y;
 }
 unsigned getDay(){
 
