@@ -12,7 +12,7 @@ private:
    const std::string firstName;
    const Date date;
    const unsigned noId;
-   static unsigned nbrePerson;
+   static unsigned nbrePersonActif;
 
 };
 
