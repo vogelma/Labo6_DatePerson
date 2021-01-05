@@ -3,17 +3,18 @@
 #include <string>
 #include "Date.h"
 
+
 class Person {
 public:
    Person(std::string l, std::string f, Date d);
-
+	static unsigned int nbrePerson();
 private:
    const std::string lastName;
    const std::string firstName;
    const Date date;
    const unsigned noId;
    static unsigned nbrePersonActif;
-
+	static unsigned int nbre_Person;
 };
 
 
