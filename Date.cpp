@@ -8,19 +8,24 @@ day = d;
 month = m;
 year = y;
 }
-unsigned getDay(){
-
+Date::Date(std::string){
+    //to do
 }
-unsigned getMonthNo(){
-
+unsigned Date::getDay(){
+    return day;
 }
+unsigned Date::getMonthNo(){
+    return month;
+}
+
+unsigned Date::getYear(){
+    return year;
+}
+
 //enum avec mois
-unsigned getMonthEnum(){
+unsigned Date::getMonthEnum(){
 
 }
-std::string getMonthString(){
-
-}
-unsigned getYear(){
+std::string Date::getMonthString(){
 
 }
