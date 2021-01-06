@@ -11,34 +11,38 @@ class Person {
 public:
    Person(std::string l, std::string f, Date d);
 	static unsigned int nbrePerson();
+
 private:
    const std::string lastName;
    const std::string firstName;
    const Date date;
    const unsigned noId;
    static unsigned nbrePersonActif;
-	static unsigned int nbre_Person;
-	friend std::ostream& operator<<(std::ostream&, const Person& person);
 	friend SortBy;
 	friend FindBy;
+
 
 
 };
 
 class SortBy{
 public:
-	PERSON identifier;
-private:
 	SortBy(PERSON identifier);
 	bool operator() (const Person& person1, const Person& person2);
+
+private:
+   PERSON identifier;
 
 };
 
 class FindBy{
 public:
-	PERSON identifier;
+	FindBy(PERSON identifier, const std::string string);
+
 private:
-	FindBy(PERSON identifier);
+   PERSON identifier;
+	const std::string string;
+
 };
 
 
