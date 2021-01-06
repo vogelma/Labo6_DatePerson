@@ -290,30 +290,10 @@ Date Date::operator--(int i){
     return temp;
 }
 
-
-
-Date Date::operator+=(unsigned d) {
-    if (!(isValid())) {
-        return *this;
-    }
-    *this = *this + d;
-    return (*this);
-}
-
-Date Date::operator-=(unsigned d) {
-    if (!(isValid())) {
-        return *this;
-    }
-    *this = *this - d;
-    return (*this);
-}
-
-//----------------DISPLAY-------------------//
-//add a '0' if the number is only one digit long
-std::string Date::showDate(unsigned i) {
+std::string Date::showDate(unsigned i){
     std::string sortie = std::to_string(i);
 
-    if (i < 10) {
+    if(i < 10){
         sortie.insert(0, "0");
     }
     return sortie;
