@@ -1,20 +1,24 @@
 /*-------------------------------------------------------------------------------
- Laboratoire : 07 - Person / Date
- Fichier     : main.cpp
- Auteur(s)   : BREGUET Guy-Michel
- Date        : 04.01.2021 - v1.2
- But         : Programme de test pour les classes
-               - Date
-               - Person
- Remarque(s) : la gestion des erreurs est assurée
+ Laboratoire   : 07 - Person / Date
+ Fichier       : main.cpp - v1.4
+ Auteur(s)     : BREGUET Guy-Michel
+ Date          : 04.01.2021
+ But           : Programme de test pour les classes
+                 - Date
+                 - Person
+ Changes       : 05.01.2021 - GMB
+               : added (int) to cout << "(int)date.getMonthEnum()
+ Changes       : 06.01.2021 - GMB
+               : corrected expected output (comments at the end)
 
- Compilateur : MinGW-g++ 4.6.2
+ Remarque(s)   : la gestion des erreurs est assurée
+
+ Compilateur   : MinGW-g++ 4.6.2
  -------------------------------------------------------------------------------*/
 
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <string>
 #include <algorithm>
 #include "Date.h"
 #include "Person.h"
@@ -60,7 +64,7 @@ int main() {
 
     cout << "date.getDay()              : " << date.getDay()             << endl;
     cout << "date.getMonthNo()          : " << date.getMonthNo()         << endl;
-    cout << "date.getMonthEnum()        : " << (int)date.getMonthEnum()  << endl;
+    cout << "(int)date.getMonthEnum()   : " << (int)date.getMonthEnum()  << endl;
     cout << "date.getMonthString()      : " << date.getMonthString()     << endl;
     cout << "date.getYear()             : " << date.getYear()            << endl;
 
@@ -110,12 +114,12 @@ int main() {
 
     Date d5;
     d5 = {2, 3, 2020};
-    cout << "string(d5)                 : "  << string(d5)               << endl;
+    //cout << "string(d5)                 : "  << string(d5)               << endl;
 
     cout << "----------------------------------------"                   << endl
          << "wrong dates"                                                << endl;
     // in case a Date is wrong, then :
-    // - when converted to string, displayed, etc => "Invalide Date"
+    // - when converted to string, displayed, etc => "Invalid Date"
     // - when treated with an arithmetic operators => unchanged
     // - when treated with an comparison operators => alway false
     // - setter are effective and may correct the date to a valid status
@@ -256,7 +260,7 @@ void show(const Book& book, const PERSON& by, const string& str) {
 //               setMonth(Month)            : 18-03-1991
 //               date.getDay()              : 18
 //               date.getMonthNo()          : 3
-//               date.getMonthEnum()        : 3
+//               (int)date.getMonthEnum()   : 3
 //               date.getMonthString()      : March
 //               date.getYear()             : 1991
 //               ----------------------------------------
@@ -293,9 +297,9 @@ void show(const Book& book, const PERSON& by, const string& str) {
 //               string(d5)                 : 02-03-2020
 //               ----------------------------------------
 //               wrong dates
-//               d6(31, 6, 2020)            : Invalide Date
+//               d6(31, 6, 2020)            : Invalid Date
 //               d6(30, 6, 2020)            : 30-06-2020
-//               d6(30, 2, 2020)            : Invalide Date
+//               d6(30, 2, 2020)            : Invalid Date
 //               d6.isValid()               : false
 //               isValid(31, 6, 2020)       : false
 //               ----------------------------------------
@@ -330,14 +334,14 @@ void show(const Book& book, const PERSON& by, const string& str) {
 //               Presley Elvis    08-01-1935 (id=3)
 //               Jackson Michael  29-08-1958 (id=4)
 //
-//               sorted by nom
-//               Monroe Marilyn   01-06-1926 (id=2)
-//               Presley Elvis    08-01-1935 (id=3)
+//               sorted by lastName
 //               Jackson Michael  29-08-1958 (id=4)
-//
-//               sorted by prenom
 //               Monroe Marilyn   01-06-1926 (id=2)
 //               Presley Elvis    08-01-1935 (id=3)
+//
+//               sorted by firstName
+//               Presley Elvis    08-01-1935 (id=3)
+//               Monroe Marilyn   01-06-1926 (id=2)
 //               Jackson Michael  29-08-1958 (id=4)
 //
 //               sorted by date
@@ -350,12 +354,13 @@ void show(const Book& book, const PERSON& by, const string& str) {
 //               Monroe Marilyn   01-06-1926 (id=2)
 //               ----------------------------------------
 //               find a person by its firstname
-//               Presley Elvis   08-01-1935 (id=3)
+//               Presley Elvis    08-01-1935 (id=3)
 //               ----------------------------------------
 //               find a person by its lastname
 //               Monroe Marilyn   01-06-1926 (id=2)
 //               ----------------------------------------
 //               find a person by its date
-//               Jackson Michael   29-08-1958 (id=4)
+//               Jackson Michael  29-08-1958 (id=4)
 //
 //               person counter : 5
+//               Program ended with exit code: 0

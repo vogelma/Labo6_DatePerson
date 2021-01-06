@@ -17,19 +17,19 @@ Date::Date(unsigned d, unsigned m, unsigned y) {
 }
 
 Date::Date(std::string d) {
-   int pos =  d.find("-");
-   std::string strday(d, 0, pos);
-   std::string strmonth(d, pos + 1, 2);
-   std::string stryear(d, pos + 4);
+    int pos = d.find("-");
+    std::string strday(d, 0, pos);
+    std::string strmonth(d, pos + 1, 2);
+    std::string stryear(d, pos + 4);
 
-   day = std::stoi (strday);
-   month = std::stoi (strmonth);
-   year = std::stoi (stryear);
-   correct = isValid();
+    day = std::stoi(strday);
+    month = std::stoi(strmonth);
+    year = std::stoi(stryear);
+    correct = isValid();
 
 }
 
-Date::Date(Date const &dateUser){
+Date::Date(Date const &dateUser) {
     day = dateUser.getDay();
     month = dateUser.getMonthNo();
     year = dateUser.getYear();
@@ -49,7 +49,7 @@ unsigned Date::getYear() const {
 }
 
 
-unsigned Date::getMonthEnum() {
+Month Date::getMonthEnum() const {
     return Month(month);
 }
 
@@ -126,83 +126,194 @@ unsigned Date::numberDaysInMonth(unsigned m, unsigned y) {
     }
 }
 
-std::ostream &operator<<(std::ostream &os, const Date& dateDisplay) {
-    if(dateDisplay.isValid()) {
+std::ostream &operator<<(std::ostream &os, const Date &dateDisplay) {
+    if (dateDisplay.isValid()) {
 
-        std::cout << Date::showDate(dateDisplay.getDay()) << "-" << Date::showDate(dateDisplay.getMonthNo()) << "-" << dateDisplay.getYear();
-    }
-    else{
+        std::cout << Date::showDate(dateDisplay.getDay()) << "-" << Date::showDate(dateDisplay.getMonthNo()) << "-"
+                  << dateDisplay.getYear();
+    } else {
         std::cout << "Invalide Date";
     }
     return os;
 }
+//--------------------greater and smaller---------------------//
+bool Date::operator<(Date date2) {
+    if (!(this->isValid()) || !(date2.isValid())) {
+        return false;
+    }
+    if (this->year < date2.year) {
+        return true;
+    }
+    if (this->month < date2.month) {
+        return true;
+    }
+    if (this->day < date2.day) {
+        return true;
+    }
+    return false;
+}
 
-bool operator<(Date date1, Date date2){
-    if(!(date1.isValid()) || !(date2.isValid())) {
+bool Date::operator>(Date date2) {
+    if (!(this->isValid()) || !(date2.isValid())) {
+        return false;
+    }
+    if (this->year > date2.year) {
+        return true;
+    }
+    if (this->month > date2.month) {
+        return true;
+    }
+    if (this->day > date2.day) {
+        return true;
+    }
+
+    return false;
+}
+//-------------------greater or equal and smaller or equal-------------------//
+bool Date::operator<=(Date date2) {
+    if (!(this->isValid()) || !(date2.isValid())) {
+        return false;
+    }
+    if (*this < date2 || *this == date2) {
+        return true;
+    } else {
         return false;
     }
 }
-bool operator>(Date date1, Date date2){
-    if(!(date1.isValid()) || !(date2.isValid())) {
+
+bool Date::operator>=(const Date& date2) {
+    if (!(this->isValid()) || !(date2.isValid())) {
+        return false;
+    }
+    if (*this > date2 || *this == date2) {
+        return true;
+    } else {
         return false;
     }
 }
-bool operator<=(Date date1, Date date2){
-    if(!(date1.isValid()) || !(date2.isValid())) {
+
+//-------------------equal--------------------//
+bool Date::operator==(const Date& date2) {
+    if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
-}
-bool operator>=(Date date1, Date date2){
-    if(!(date1.isValid()) || !(date2.isValid())) {
-        return false;
+    if (this->day == date2.day && this->month == date2.month && this->year == date2.year) {
+        return true;
     }
+
+    return false;
 }
-bool operator==(Date date1, Date date2){
-    if(!(date1.isValid()) || !(date2.isValid())) {
-        return false;
+//-----------------add and sub---------------//
+Date Date::operator+(unsigned d) {
+    if (!(isValid())) {
+        return *this;
     }
-}
-Date operator+(Date date1, unsigned d){
-    if(!(date1.isValid())) {
-        return date1;
+    Date dateReturn(*this);
+    for (unsigned i = 0; i < d; ++i) {
+        (++dateReturn);
     }
+    return dateReturn;
 }
+
 Date operator+(unsigned d, Date date1){
-    if(!(date1.isValid())) {
+    if (!(date1.isValid())) {
         return date1;
     }
-}
-Date operator-(Date date1, unsigned d){
-    if(!(date1.isValid())) {
-        return date1;
-    }
+    Date dateReturn(date1);
+    return (dateReturn + d);
 }
 
-Date operator++(Date date1){
-    if(!(date1.isValid())) {
-        return date1;
+Date Date::operator-(unsigned d) {
+    if (!(isValid())) {
+        return *this;
     }
+    Date dateReturn(*this);
+    for (unsigned i = 0; i < d; ++i) {
+        --dateReturn;
+    }
+    return dateReturn;
 }
-Date operator--(Date date1){
-    if(!(date1.isValid())) {
-        return date1;
+//--------------increment and decrement-------------------//
+Date Date::operator++() {
+    if (!(isValid())) {
+        return *this;
     }
-}
-Date operator+=(Date date1, unsigned d){
-    if(!(date1.isValid())) {
-        return date1;
+
+    if (day == numberDaysInMonth()) {
+        if (month == (unsigned) Month::DECEMBER) {
+            ++year;
+            month = (unsigned) Month::JANUARY;
+            day = 1;
+        } else {
+            ++month;
+            day = 1;
+        }
+    } else {
+        ++day;
     }
-}
-Date operator-=(Date date1, unsigned d){
-    if(!(date1.isValid())) {
-        return date1;
-    }
+
+    return *this;
 }
 
-std::string Date::showDate(unsigned i){
+Date Date::operator--() {
+    if (!(isValid())) {
+        return *this;
+    }
+
+    if (day == 1) {
+        if (month == (unsigned) Month::JANUARY) {
+            --year;
+            month = (unsigned) Month::DECEMBER;
+            day = numberDaysInMonth();
+        } else {
+            --month;
+            day = numberDaysInMonth();
+        }
+    } else {
+        --day;
+    }
+
+    return *this;
+}
+
+//post-incrementation
+Date Date::operator++(int i){
+    Date temp = *this;
+    ++*this;
+    return temp;
+}
+
+
+Date Date::operator--(int i){
+    Date temp = *this;
+    --*this;
+    return temp;
+}
+
+
+
+Date Date::operator+=(unsigned d) {
+    if (!(isValid())) {
+        return *this;
+    }
+    *this = *this + d;
+    return (*this);
+}
+
+Date Date::operator-=(unsigned d) {
+    if (!(isValid())) {
+        return *this;
+    }
+    *this = *this - d;
+    return (*this);
+}
+
+//----------------DISPLAY-------------------//
+//add a '0' if the number is only one digit long
+std::string Date::showDate(unsigned i) {
     std::string sortie = std::to_string(i);
 
-    if(i < 10){
+    if (i < 10) {
         sortie.insert(0, "0");
     }
     return sortie;

@@ -16,34 +16,46 @@ public:
    Date(Date const &dateUser);
    Date(std::string n);
 
-
+//----getter----/
    unsigned getDay() const;
    unsigned getMonthNo() const;
-   unsigned getMonthEnum();
+   Month getMonthEnum() const;
    unsigned getYear() const;
    std::string getMonthString() const;
+//----setter----//
    void setDay(unsigned d);
    void setMonth(unsigned m);
    void setMonth(std::string m);
    void setMonth(Month m);
    void setYear(unsigned y);
+//---utility----//
    bool isValid() const;
    bool isLeapYear() const;
    unsigned numberDaysInMonth() const;
 
-   friend std::ostream &operator<<(std::ostream &os, const Date& dateDisplay);
-   friend bool operator<(Date date1, Date date2);
-   friend bool operator>(Date date1, Date date2);
-   friend bool operator<=(Date date1, Date date2);
-   friend bool operator>=(Date date1, Date date2);
-   friend bool operator==(Date date1, Date date2);
-   friend Date operator+(Date date1, unsigned d);
+
+   bool operator<(Date date2);
+   bool operator>(Date date2);
+   bool operator<=(Date date2);
+   bool operator>=(const Date& date2);
+   bool operator==(const Date& date2);
+
+   Date operator+(unsigned d);
+   Date operator-(unsigned d);
+
+   //++x and --x
+   Date operator++();
+   Date operator--();
+   //x++ and x--
+   Date operator++(int i);
+   Date operator--(int i);
+
+   //increment and decrement
+   Date operator+=(unsigned d);
+   Date operator-=(unsigned d);
+
    friend Date operator+(unsigned d, Date date1);
-   friend Date operator-(Date date1, unsigned d);
-   friend Date operator++(Date date1);
-   friend Date operator--(Date date1);
-   friend Date operator+=(Date date1, unsigned d);
-   friend Date operator-=(Date date1, unsigned d);
+   friend std::ostream &operator<<(std::ostream &os, const Date& dateDisplay);
 
    static bool isValid(unsigned d, unsigned m, unsigned y);
    static bool isLeapYear(unsigned y);
