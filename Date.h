@@ -30,6 +30,7 @@ public:
    bool isValid() const;
    bool isLeapYear() const;
    unsigned numberDaysInMonth() const;
+
    friend std::ostream &operator<<(std::ostream &os, const Date& dateDisplay);
    friend bool operator<(Date date1, Date date2);
    friend bool operator>(Date date1, Date date2);
@@ -47,6 +48,7 @@ public:
    static bool isValid(unsigned d, unsigned m, unsigned y);
    static bool isLeapYear(unsigned y);
    static unsigned numberDaysInMonth(unsigned m, unsigned y);
+   static std::string showDate(unsigned i);
 
 private:
    unsigned day,

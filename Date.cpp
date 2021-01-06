@@ -18,13 +18,13 @@ Date::Date(unsigned d, unsigned m, unsigned y) {
 
 Date::Date(std::string d) {
    int pos =  d.find("-");
-   std::string strday(d, pos);
-   pos = d.find("-", pos + 1);
-   std::string strmonth(d, pos);
-   std::string stryear(d, pos + strmonth.length());
-   day = std::stoi(strday);
-   month = std::stoi(strmonth);
-   year = std::stoi(stryear);
+   std::string strday(d, 0, pos);
+   std::string strmonth(d, pos + 1, 2);
+   std::string stryear(d, pos + 4);
+
+   day = std::stoi (strday);
+   month = std::stoi (strmonth);
+   year = std::stoi (stryear);
    correct = isValid();
 
 }
@@ -50,7 +50,7 @@ unsigned Date::getYear() const {
 
 
 unsigned Date::getMonthEnum() {
- //TO-DO
+    return Month(month);
 }
 
 std::string Date::getMonthString() const {
@@ -128,7 +128,8 @@ unsigned Date::numberDaysInMonth(unsigned m, unsigned y) {
 
 std::ostream &operator<<(std::ostream &os, const Date& dateDisplay) {
     if(dateDisplay.isValid()) {
-        std::cout << dateDisplay.getDay() << "-" << dateDisplay.getMonthNo() << "-" << dateDisplay.getYear();
+
+        std::cout << Date::showDate(dateDisplay.getDay()) << "-" << Date::showDate(dateDisplay.getMonthNo()) << "-" << dateDisplay.getYear();
     }
     else{
         std::cout << "Invalide Date";
@@ -196,4 +197,13 @@ Date operator-=(Date date1, unsigned d){
     if(!(date1.isValid())) {
         return date1;
     }
+}
+
+std::string Date::showDate(unsigned i){
+    std::string sortie = std::to_string(i);
+
+    if(i < 10){
+        sortie.insert(0, "0");
+    }
+    return sortie;
 }
