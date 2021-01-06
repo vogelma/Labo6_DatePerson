@@ -15,8 +15,23 @@ private:
    const unsigned noId;
    static unsigned nbrePersonActif;
 	static unsigned int nbre_Person;
+	friend std::ostream& operator<<(std::ostream&, const Person& person);
+
 };
 
+class SortBy{
+public:
+
+private:
+
+};
+
+class FindBy{
+public:
+
+private:
+
+};
 
 
 #endif //LABO6_PERSONDATE_PERSON_H
