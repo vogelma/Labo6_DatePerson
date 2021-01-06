@@ -49,7 +49,7 @@ unsigned Date::getYear() const {
 }
 
 
-unsigned Date::getMonthEnum() {
+Month Date::getMonthEnum() {
     return Month(month);
 }
 
@@ -141,11 +141,39 @@ bool operator<(Date date1, Date date2){
     if(!(date1.isValid()) || !(date2.isValid())) {
         return false;
     }
+    //version compacte
+    if((date1.year < date2.year) || (date1.year == date2.year && date1.month < date2.month) || (date1.year == date2.year && date1.month == date2.month && date1.day < date2.day))
+	 {
+    	return true;
+	 }
+    else return false;
+    /*
+   //Version non compacte
+	if (date1.year < date2.year)
+	{
+		return true;
+	}
+	else if(date1.year == date2.year && date1.month < date2.month )
+	{
+		return true;
+	}
+	else if(date1.year == date2.year && date1.month == date2.month && date1.day < date2.day)
+	{
+		return true;
+	}
+	else return false;
+   */
 }
 bool operator>(Date date1, Date date2){
     if(!(date1.isValid()) || !(date2.isValid())) {
         return false;
     }
+    if(!(date1 == date2))
+	 {
+		 return !(date1 < date2);
+	 }
+    else return false;
+
 }
 bool operator<=(Date date1, Date date2){
     if(!(date1.isValid()) || !(date2.isValid())) {
