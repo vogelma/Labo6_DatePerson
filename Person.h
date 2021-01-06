@@ -31,7 +31,7 @@ public:
 private:
 	SortBy(PERSON identifier);
 	bool operator() (const Person& person1, const Person& person2);
-	}
+
 };
 
 class FindBy{
