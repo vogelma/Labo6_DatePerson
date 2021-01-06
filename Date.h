@@ -7,7 +7,18 @@
 //Enum class en dehors de la class Date car dans le main.cpp la ligne 58 et 126 ne comprend pas
 //le mois et voudrait plutot "Date::Month" mais comme on peut pas modifier le main je l'ai mis dehors
 enum class Month {
-	JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+	JANUARY = 1,
+	FEBRUARY,
+	MARCH,
+	APRIL,
+	MAY,
+	JUNE,
+	JULY,
+	AUGUST,
+	SEPTEMBER,
+	OCTOBER,
+	NOVEMBER,
+	DECEMBER
 };
 
 class Date {
