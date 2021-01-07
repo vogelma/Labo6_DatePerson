@@ -44,7 +44,7 @@ public:
    bool isLeapYear() const;
    unsigned numberDaysInMonth() const;
 
-
+//---operator---//
    bool operator<(Date date2);
    bool operator>(Date date2);
    bool operator<=(Date date2);
@@ -66,6 +66,7 @@ public:
    Date operator-=(unsigned d);
 
    friend Date operator+(unsigned d, Date date1);
+   explicit operator std::string() const;
    friend std::ostream &operator<<(std::ostream &os, const Date& dateDisplay);
 
    static bool isValid(unsigned d, unsigned m, unsigned y);

@@ -128,15 +128,15 @@ unsigned Date::numberDaysInMonth(unsigned m, unsigned y) {
         return 31;
     }
 }
+Date::operator std::string() const{
+    return (showDate(day) + "-" + showDate(month) + "-" + std::to_string(year));
+}
 
 std::ostream &operator<<(std::ostream &os, const Date &dateDisplay) {
     if (dateDisplay.isValid()) {
-
-        std::cout << Date::showDate(dateDisplay.getDay())     << "-"
-                  << Date::showDate(dateDisplay.getMonthNo()) << "-"
-                  << dateDisplay.getYear();
+        os << std::string(dateDisplay);
     } else {
-        std::cout << "Invalide Date";
+        os << "Invalide Date";
     }
     return os;
 }
