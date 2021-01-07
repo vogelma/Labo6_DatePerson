@@ -11,7 +11,8 @@ class Person {
 public:
    Person(std::string l, std::string f, Date d);
 	static unsigned int nbrePerson();
-
+	//friend std::ostream& operator<<(std::ostream&, const Person& person);
+	Person& operator=(const Person& person);
 private:
    const std::string lastName;
    const std::string firstName;
@@ -38,6 +39,7 @@ private:
 class FindBy{
 public:
 	FindBy(PERSON identifier, const std::string string);
+	bool operator() (Person person);
 
 private:
    PERSON identifier;
