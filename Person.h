@@ -1,6 +1,7 @@
 #ifndef LABO6_PERSONDATE_PERSON_H
 #define LABO6_PERSONDATE_PERSON_H
 #include <string>
+#include <iomanip>
 #include "Date.h"
 
 enum class PERSON {NO_ID, LASTNAME, FIRSTNAME, DATE};
@@ -10,17 +11,24 @@ class FindBy;
 class Person {
 public:
    Person(std::string l, std::string f, Date d);
-	static unsigned int nbrePerson();
-	//friend std::ostream& operator<<(std::ostream&, const Person& person);
-	Person& operator=(const Person& person);
+   Person(const Person& p);
+   ~Person();
+   //----getter----/
+   static unsigned int nbrePerson();
+
+
+   Person& operator=(const Person& person);
+
+   friend std::ostream &operator<<(std::ostream &os,const Person p);
 private:
    const std::string lastName;
    const std::string firstName;
    const Date date;
    const unsigned noId;
-   static unsigned nbrePersonActif;
-	friend SortBy;
-	friend FindBy;
+   static unsigned nextId;
+   static unsigned nbrePersonAlive;
+   friend SortBy;
+   friend FindBy;
 
 
 
@@ -38,12 +46,12 @@ private:
 
 class FindBy{
 public:
-	FindBy(PERSON identifier, const std::string string);
+	FindBy(PERSON identifier,const std::string f);
 	bool operator() (Person person);
 
 private:
    PERSON identifier;
-	const std::string string;
+   const std::string toFind;
 
 };
 

@@ -114,7 +114,7 @@ int main() {
 
     Date d5;
     d5 = {2, 3, 2020};
-    //cout << "string(d5)                 : "  << string(d5)               << endl;
+    cout << "string(d5)                 : "  << string(d5)               << endl;
 
     cout << "----------------------------------------"                   << endl
          << "wrong dates"                                                << endl;
@@ -171,56 +171,56 @@ int main() {
     Person Michael  ( "Jackson", "Michael", Date(29, 8, 1958) );
     cout << "nbre personnes : " << Person::nbrePerson()                  << endl;
 
-    {
-        cout << endl;
-        cout << "----------------------------------------"                << endl
-             << "a vector of 3 persons"                                   << endl;
-        Book book;
-        book.push_back(Marilyn);
-        book.push_back(Elvis);
-        book.push_back(Michael);
-        cout << "person counter : " << Person::nbrePerson()               << endl;
+       {
+           cout << endl;
+           cout << "----------------------------------------"                << endl
+                << "a vector of 3 persons"                                   << endl;
+           Book book;
+           book.push_back(Marilyn);
+           book.push_back(Elvis);
+           book.push_back(Michael);
+           cout << "person counter : " << Person::nbrePerson()               << endl;
 
-        cout << endl;
-        cout << "sorted by noId" << endl;
-        sort(book.begin(), book.end(), SortBy(PERSON::NO_ID));
-        cout << book << endl;
+           cout << endl;
+           cout << "sorted by noId" << endl;
+           sort(book.begin(), book.end(), SortBy(PERSON::NO_ID));
+           cout << book << endl;
 
-        cout << "sorted by lastName" << endl;
-        sort(book.begin(), book.end(), SortBy(PERSON::LASTNAME));
-        cout << book << endl;
+           cout << "sorted by lastName" << endl;
+           sort(book.begin(), book.end(), SortBy(PERSON::LASTNAME));
+           cout << book << endl;
 
-        cout << "sorted by firstName" << endl;
-        sort(book.begin(), book.end(), SortBy(PERSON::FIRSTNAME));
-        cout << book << endl;
+           cout << "sorted by firstName" << endl;
+           sort(book.begin(), book.end(), SortBy(PERSON::FIRSTNAME));
+           cout << book << endl;
 
-        cout << "sorted by date" << endl;
-        sort(book.begin(), book.end(), SortBy(PERSON::DATE));
-        cout << book << endl;
+           cout << "sorted by date" << endl;
+           sort(book.begin(), book.end(), SortBy(PERSON::DATE));
+           cout << book << endl;
 
-        cout << "----------------------------------------"                << endl
-             << "find a person by its no_id"                              << endl;
-        show(book, PERSON::NO_ID, "2");
-        cout << endl;
+           cout << "----------------------------------------"                << endl
+                << "find a person by its no_id"                              << endl;
+           show(book, PERSON::NO_ID, "2");
+           cout << endl;
 
-        cout << "----------------------------------------"                << endl
-             << "find a person by its firstname"                          << endl;
-        show(book, PERSON::LASTNAME, "Presley");
-        cout << endl;
+           cout << "----------------------------------------"                << endl
+                << "find a person by its firstname"                          << endl;
+           show(book, PERSON::LASTNAME, "Presley");
+           cout << endl;
 
-        cout << "----------------------------------------"                << endl
-             << "find a person by its lastname"                           << endl;
-        show(book, PERSON::FIRSTNAME, "Marilyn");
-        cout << endl;
+           cout << "----------------------------------------"                << endl
+                << "find a person by its lastname"                           << endl;
+           show(book, PERSON::FIRSTNAME, "Marilyn");
+           cout << endl;
 
-        cout << "----------------------------------------"                << endl
-             << "find a person by its date"                               << endl;
-        show(book, PERSON::DATE, "29-08-1958");
-        cout << endl;
-    }
+           cout << "----------------------------------------"                << endl
+                << "find a person by its date"                               << endl;
+           show(book, PERSON::DATE, "29-08-1958");
+           cout << endl;
+       }
 
-    cout << endl;
-    cout << "person counter : " << Person::nbrePerson()                  << endl;
+       cout << endl;
+       cout << "person counter : " << Person::nbrePerson()                  << endl;
 
     return EXIT_SUCCESS;
 }

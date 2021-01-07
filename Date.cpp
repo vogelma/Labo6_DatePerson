@@ -9,9 +9,9 @@ const std::string months[] = {"error", "January", "February", "March", "April", 
                               "July", "August", "September", "October", "November", "December"};
 
 Date::Date(unsigned d, unsigned m, unsigned y) {
-    day = d;
+    day   = d;
     month = m;
-    year = y;
+    year  = y;
     correct = isValid();
 }
 
@@ -21,17 +21,17 @@ Date::Date(std::string d) {
     std::string strmonth(d, pos + 1, 2);
     std::string stryear(d, pos + 4);
 
-    day = std::stoi(strday);
+    day   = std::stoi(strday);
     month = std::stoi(strmonth);
-    year = std::stoi(stryear);
+    year  = std::stoi(stryear);
     correct = isValid();
 
 }
 
 Date::Date(Date const &dateUser) {
-    day = dateUser.getDay();
-    month = dateUser.getMonthNo();
-    year = dateUser.getYear();
+    day   = dateUser.day;
+    month = dateUser.month;
+    year  = dateUser.year;
     correct = isValid();
 }
 
@@ -117,18 +117,17 @@ bool Date::isLeapYear(unsigned y) {
 unsigned Date::numberDaysInMonth(unsigned m, unsigned y) {
     if ((Month) m == Month::FEBRUARY) {
         return isLeapYear(y) ? 29 : 28;
-    }
-    else if ((Month) m == Month::APRIL ||
-              (Month) m == Month::JUNE ||
-              (Month) m == Month::SEPTEMBER ||
-              (Month) m == Month::NOVEMBER) {
+    } else if ((Month) m == Month::APRIL ||
+               (Month) m == Month::JUNE ||
+               (Month) m == Month::SEPTEMBER ||
+               (Month) m == Month::NOVEMBER) {
         return 30;
-    }
-    else {
+    } else {
         return 31;
     }
 }
-Date::operator std::string() const{
+
+Date::operator std::string() const {
     return (showDate(day) + "-" + showDate(month) + "-" + std::to_string(year));
 }
 
@@ -142,20 +141,20 @@ std::ostream &operator<<(std::ostream &os, const Date &dateDisplay) {
 }
 
 //--------------------greater and smaller---------------------//
-bool Date::operator<(Date date2) {
+bool Date::operator<(Date date2) const{
     if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
     if ((this->year < date2.year) ||
         (this->year == date2.year && this->month < date2.month) ||
         (this->year == date2.year && this->month == date2.month && this->day < date2.day)) {
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
 }
 
-bool Date::operator>(Date date2) {
+bool Date::operator>(Date date2) const{
     if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
@@ -167,7 +166,7 @@ bool Date::operator>(Date date2) {
 }
 
 //-------------------greater or equal and smaller or equal-------------------//
-bool Date::operator<=(Date date2) {
+bool Date::operator<=(Date date2) const{
     if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
@@ -178,7 +177,7 @@ bool Date::operator<=(Date date2) {
     }
 }
 
-bool Date::operator>=(const Date &date2) {
+bool Date::operator>=(Date date2) const{
     if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
@@ -190,7 +189,7 @@ bool Date::operator>=(const Date &date2) {
 }
 
 //-------------------equal--------------------//
-bool Date::operator==(const Date &date2) {
+bool Date::operator==(Date date2) const{
     if (!(this->isValid()) || !(date2.isValid())) {
         return false;
     }
@@ -288,6 +287,7 @@ Date Date::operator--(int i) {
     --*this;
     return temp;
 }
+
 Date Date::operator+=(unsigned d) {
     if (!(isValid())) {
         return *this;

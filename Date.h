@@ -23,6 +23,7 @@ enum class Month {
 
 class Date {
 public:
+   //--constructor----//
    Date(unsigned d = 1, unsigned m = 1, unsigned y = 1900);
    Date(Date const &dateUser);
    Date(std::string n);
@@ -45,11 +46,11 @@ public:
    unsigned numberDaysInMonth() const;
 
 //---operator---//
-   bool operator<(Date date2);
-   bool operator>(Date date2);
-   bool operator<=(Date date2);
-   bool operator>=(const Date& date2);
-   bool operator==(const Date& date2);
+   bool operator<(Date date2) const;
+   bool operator>(Date date2) const;
+   bool operator<=(Date date2) const;
+   bool operator>=(Date date2) const;
+   bool operator==(Date date2) const;
 
    Date operator+(unsigned d);
    Date operator-(unsigned d);
@@ -66,6 +67,7 @@ public:
    Date operator-=(unsigned d);
 
    friend Date operator+(unsigned d, Date date1);
+
    explicit operator std::string() const;
    friend std::ostream &operator<<(std::ostream &os, const Date& dateDisplay);
 
