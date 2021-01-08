@@ -1,14 +1,3 @@
-/*-------------------------------------------------------------------------------
- Laboratoire   : 07 - Person / Date
- Fichier       : Person.h
- Auteur(s)     : Maelle Vogel, Amandine Gainville
- Date          : 04.01.2021
- But           : Set of functions - header
-
- Remarque(s)   : Error management is assured
-
- Compilateur   : MinGW-g++ 4.6.2
- -------------------------------------------------------------------------------*/
 #ifndef LABO6_PERSONDATE_PERSON_H
 #define LABO6_PERSONDATE_PERSON_H
 #include <string>
@@ -31,14 +20,14 @@ public:
 	//to delete a person
    ~Person();
 
-   //function to count the number of people
+   //returns the number of people
    static unsigned int nbrePerson();
 
    //----Operator=----/
-	//to assign identifiers from one person to another
+   //to assign identifiers from one person to another
    Person& operator=(const Person& person);
 
-	//function friend : operator<<
+   //function friend : operator<<
    //to display the person's idientifiers
    friend std::ostream &operator<<(std::ostream &os,const Person p);
 
@@ -56,10 +45,10 @@ private:
    friend SortBy;
    friend FindBy;
 };
-//*************** end class Person ***************
+//---------------- end class Person --------------
 
 
-//*************** class SortBy     ***************
+//----------------- class SortBy ---------------
 class SortBy{
 public:
 	SortBy(PERSON identifier);
@@ -71,10 +60,10 @@ private:
    PERSON identifier;
 
 };
-//*************** end class SortBy ***************
+//--------------- end class SortBy ---------------
 
 
-//*************** class FindBy     ***************
+//--------------- class FindBy -------------------
 class FindBy{
 public:
 	FindBy(PERSON identifier,const std::string f);

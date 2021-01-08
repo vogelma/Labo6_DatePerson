@@ -1,9 +1,10 @@
 /*-------------------------------------------------------------------------------
  Laboratoire   : 07 - Person / Date
  Filename      : Date.cpp
- Authors       : Maëlle Vogel et Amandine Gainville
+ Authors       : Maëlle Vogel and Amandine Gainville
  Creation Date : 04.01.2021
  Description   : This library provides functions to:
+                  - add a date
                   - display a date
                   - convert a date to string
                   - verify a date

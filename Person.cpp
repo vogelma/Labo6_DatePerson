@@ -1,18 +1,18 @@
 /*-------------------------------------------------------------------------------
  Laboratoire   : 07 - Person / Date
- Fichier       : Person.cpp
- Auteur(s)     : Maelle Vogel, Amandine Gainville
- Date          : 04.01.2021
- But           : Set of functions : define a person with identifiers (last name, first name, date, ID),
-                 compare people and find a person with an identifier
+ Filename      : Person.cpp
+ Authors       : Maelle Vogel and Amandine Gainville
+ Creation Date : 04.01.2021
+ Description   : This library provides functions to:
+                 - add people (firstname, lastname and birth date)
+                 - sort people by firstname, lastname, id or birth date
+                 - find people by firstname, lastname, id or birth date
 
  Remarque(s)   : Error management is assured
 
  Compilateur   : MinGW-g++ 4.6.2
  -------------------------------------------------------------------------------*/
 #include "Person.h"
-
-//*************** class Person ***************
 
 //Init value
 unsigned Person::nbrePersonAlive = 0;
@@ -26,7 +26,7 @@ Person::Person(const Person& p): lastName(p.lastName), firstName(p.firstName), d
 //to delete a person
 Person::~Person(){--nbrePersonAlive;}
 
-//function to count the number of people
+//---getter---//
 unsigned int Person::nbrePerson() {
     return nbrePersonAlive;
 }
@@ -35,10 +35,10 @@ unsigned int Person::nbrePerson() {
 //to assign identifiers from one person to another
 Person& Person::operator=(const Person& person) {
     if(this != &person) {
-        (std::string&) lastName = person.lastName;
+        (std::string&) lastName  = person.lastName;
         (std::string&) firstName = person.firstName;
-        (Date&) date = person.date;
-        (unsigned&) noId = person.noId;
+        (Date&) date             = person.date;
+        (unsigned&) noId         = person.noId;
     }
     return *this;
 }
